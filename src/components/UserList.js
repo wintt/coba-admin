@@ -33,6 +33,7 @@ const UserList = (props) => {
                 <tr>
                     <th scope="col">Name</th>
                     <th scope="col">User Name</th>
+                     <th scope="col">Role</th>
                     <th scope="col">Phone</th>
                     <th scope="col">City</th>
                     <th scope="col">Country</th>
@@ -45,6 +46,7 @@ const UserList = (props) => {
                             <tr key={item.id}>
                                 <td>{item.name}</td>
                                 <td>{item.username}</td>
+                                <td>{item.role}</td>
                                 <td>{item.phone}</td>
                                 <td>{item.city}</td>
                                 <td>{item.country}</td>
