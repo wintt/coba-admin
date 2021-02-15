@@ -9,6 +9,7 @@ function Login (){
 
     const [userNameErr, setuserNameErr] = useState("")
     const [passwordErr, setPasswordErr] = useState("")
+    const [systemError, setSystemError] = useState("")
 
     const history = useHistory();
     useEffect(() => {
@@ -17,7 +18,7 @@ function Login (){
         }
     }, [])
 
-    async function userAuth(e){
+     function userAuth(e) {
         e.preventDefault()
         // console.warn(userName,password)
         const isValid = formValidation()
@@ -25,7 +26,7 @@ function Login (){
         let loginData = {userName,password}
 
         if(isValid){
-            let result = await fetch("http://13.212.221.23:9040/api/login",{
+            fetch("http://13.212.221.23:9040/api/login",{
             method: 'POST',
             headers:{
                 "Content-Type": 'application/json',
@@ -33,14 +34,30 @@ function Login (){
              
             },
             body:JSON.stringify(loginData)
+        }).then(async response => {
+            const data = await response.json();
+            localStorage.setItem("user-info",JSON.stringify(data))
+            
+            if (!response.ok) {
+                // get error message from body or default to response status
+                const error = (data && data.message) || response.status;
+                return Promise.reject(error);
+            }else{
+               history.push("./userList")
+            }
+        })
+        .catch(error => {
+            // this.setState({ errorMessage: error.toString() });
+            console.error('There was an error!', error);
+            setSystemError('There was an error! ' + error)
         });
-        result = await result.json();
-        console.log("result====>", result)
-        if(result){
-            alert("Login")
-        }
-        localStorage.setItem("user-info",JSON.stringify(result))
-        history.push("./userList")
+        // result = await result.json();
+        // console.log("result====>", result)
+        // if(result){
+        //     alert("Login")
+        // }
+        // localStorage.setItem("user-info",JSON.stringify(result))
+        // history.push("./userList")
         }
 
     }
@@ -73,14 +90,15 @@ function Login (){
                     <Label className="form-label">User Name</Label>
                     <Input type="text" id="username" value={userName} onChange={(e)=>setuserName(e.target.value)}/>
                     {Object.keys(userNameErr).map((key)=>{
-                        return <div style={{color: "red"}}>{userNameErr[key]}</div>
+                        return <div style={{color: "#721c24"}}>{userNameErr[key]}</div>
                     })}
                     <Label className="form-label">Password</Label>
                     <Input id="password" type="password" className="form-control" value={password} onChange={(e)=>setPassword(e.target.value)}/>
                      {Object.keys(passwordErr).map((key)=>{
-                        return <div style={{color: "red"}}>{passwordErr[key]}</div>
+                        return <div style={{color: "#721c24"}}>{passwordErr[key]}</div>
                     })}
                 </FormGroup>
+                <div style={{color: "#721c24"}}>{systemError}</div>
                  <Link to="./forgotPassword">Forgot Password?</Link>
                  <Button type="submit" onClick={userAuth} className="custom">Login</Button>
                  <div className="signup-link">
