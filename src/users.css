@@ -3,3 +3,163 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+body {
+  background-color: DodgerBlue;
+}
+
+.main-wrapper {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Set a style for all buttons */
+button.custom {
+  background-color: #4caf50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+.navbar-fixed-top {
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  /*     z-index: 1; */
+  background: red;
+  height: 50px;
+}
+
+.navbar-fixed-top.cbp-af-header-shrink {
+  padding: 10px 0;
+}
+
+.login-form {
+  background-color: #fff;
+  width: 400px;
+  /* height: 450px; */
+  box-shadow: -5px 5px 50px rgba(0, 0, 0, 0.3), 5px -5px 50px rgba(0, 0, 0, 0.1);
+  margin: 0 15px;
+  border-radius: 10px;
+}
+
+.login-form .form-group {
+  width: 100% !important;
+}
+
+.login-form form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px 50px;
+}
+
+.login-form form .text-field {
+  position: relative;
+  width: 100%;
+  border-bottom: 2px solid #adadad;
+  margin: 20px 0;
+}
+
+.login-form form .text-field input {
+  font-family: "Lato", serif;
+  border: none;
+  outline: none;
+  background: none;
+  font-size: 16px;
+  padding: 10px 5px;
+  width: 100%;
+}
+
+.login-form form .text-field label {
+  font-family: "Lato", serif;
+  font-size: 18px;
+  color: grey;
+  font-weight: 600;
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  transform: translateY(-50%);
+  pointer-events: none;
+  transition: 0.5s ease;
+}
+
+.login-form form .text-field span {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background-color: orangered;
+  transition: 0.5s ease;
+}
+
+.login-form .text-field input:focus ~ label,
+.login-form .text-field input:valid ~ label {
+  top: -5px;
+  color: dodgerblue;
+}
+
+.login-form .text-field input:focus ~ span,
+.login-form .text-field input:valid ~ span {
+  width: 100%;
+}
+
+.login-form form a {
+  color: dodgerblue;
+  font-size: 18px;
+  align-self: start;
+  text-decoration: none;
+}
+
+.login-form form button {
+  width: 100%;
+  font-size: 18px;
+  margin: 20px 0;
+  padding: 10px;
+  background: dodgerblue;
+  border: none;
+  outline: none;
+  color: #ffff;
+  cursor: pointer;
+}
+
+.login-form .signup-link {
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+/*style for register form*/
+.register-form {
+  background-color: #fff;
+  width: 100%;
+  padding: 20px;
+  /* height: 450px; */
+  box-shadow: -5px 5px 50px rgba(0, 0, 0, 0.3), 5px -5px 50px rgba(0, 0, 0, 0.1);
+  margin: 0 15px;
+  /* border-radius: 10px; */
+}
+
+/* .register-form label {
+  padding: 20px 0;
+} */
+
+.users-list {
+  background-color: #fff;
+  width: 100%;
+  /* height: 450px; */
+  box-shadow: -5px 5px 50px rgba(0, 0, 0, 0.3), 5px -5px 50px rgba(0, 0, 0, 0.1);
+  margin: 0 15px;
+  padding: 14px;
+}

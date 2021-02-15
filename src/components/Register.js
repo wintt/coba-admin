@@ -29,21 +29,22 @@ const Register = (props) => {
                 "Accept": "application/json",
                 'Authorization': token
            },
-            
         })
-         result = await result.json()
+        result = await result.json()
         if(result){
-            console.log("Result Found")
+            alert("You created your account")
+            window.location.href = "/";
         }else{
-            console.log("Result not Found")
+            
         }
        
         // console.log("result", result)
         // localStorage.setItem("user-info", JSON.stringify(result))
     }
     return (
-      
-            <div className="col-sm-6 offset-sm-3">
+            <div className="main-wrapper">
+            <div className="container">
+            <div className="register-form">
                 <h1>Create Your Account</h1>
                 <Form>
                     <FormGroup>
@@ -73,6 +74,9 @@ const Register = (props) => {
                      <Button type="submit" className="btn btn-primary" onClick={signUp}>Submit</Button>
                 </Form>
             </div>
+            </div>
+            </div>
+      
     )
 }
 

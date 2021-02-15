@@ -5,6 +5,7 @@ import axios from 'axios'
 
 
 const UserList = (props) => {
+
     const [data, setData] = useState([])
     const [isLoading, setIsLoading] = useState(true)
     
@@ -18,8 +19,8 @@ const UserList = (props) => {
                     'Authorization': token
                 }
             })
-            console.log("response====>",response)
             const data = await response.json();
+            console.log("response data====>",data)
             setData(data.splice(0,10));
             setIsLoading(false);
        })();
@@ -27,10 +28,8 @@ const UserList = (props) => {
     },[]);
     return (
          <div className="container">
-            <h1>User List</h1>
-            {
-              console.log("data=====>", data)
-            }
+             <div class="users-list">
+                  <h1>User List</h1>
             {
              isLoading ? <div>Loading</div> : 
             <table className="table table table-striped">
@@ -56,7 +55,7 @@ const UserList = (props) => {
                                 <td>{item.city}</td>
                                 <td>{item.country}</td>
                                 <td>
-                                    <Button type='button' className="btn btn-secondary">Update</Button>
+                                    <Link to={"./edit/" + item.id} className="btn btn-secondary">Edit</Link>
                                     <Button type='button' className="btn btn-danger" onClick={async ()=> {
                                         const result = await axios.delete(`http://13.212.221.23:9040/api/users/${item.id}` ,{
                                             headers:{
@@ -78,6 +77,7 @@ const UserList = (props) => {
              </table>
             }
            
+             </div>
         </div>
     )
 }

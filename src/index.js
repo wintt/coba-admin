@@ -3,9 +3,9 @@ import Home from './components/Home'
 import Register from './components/Register'
 import EditUser from './components/EditUser'
 import UserList from './components/UserList'
+import ForgotPassword from './components/ForgotPassword'
 import React from 'react'
 import ReactDOM from 'react-dom'
-import GlobalState from './GlobalState'
 
 //css
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -15,12 +15,18 @@ import './users.css'
 function Index (){
   return (
     <div>
+        {/* <header className="navbar-fixed-top cbp-af-header">
+        <nav>
+        </nav>
+        <button>Login</button>
+       </header> */}
       <Router>
          <Switch>
              <Route exact path="/" component={Home} />
              <Route path="/register" component={Register} />
              <Route path="/edit/:id" component={EditUser} />
              <Route path="/userList" component={UserList} />
+              <Route path="/forgotPassword" component={ForgotPassword} />
          </Switch>
       </Router>
     </div>

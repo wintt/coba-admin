@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import {Form,FormGroup,Label,Input,Button} from 'reactstrap'
 import { useHistory } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 function Login (){
     const [userName, setuserName] = useState("")
@@ -40,8 +41,9 @@ function Login (){
 
 
     return (
-        <div className="col-sm-4 offset-sm-4">
-            <h1>Login Page</h1>
+        <div className="main-wrapper">
+            <div className="login-form">
+                {/* <h1>Login Page</h1> */}
             <Form>
                 <FormGroup>
                     <Label className="form-label">User Name</Label>
@@ -49,8 +51,13 @@ function Login (){
                     <Label className="form-label">Password</Label>
                     <Input type="password" className="form-control" value={password} onChange={(e)=>setPassword(e.target.value)}/>
                 </FormGroup>
-                 <Button type="submit"  onClick={userAuth}>Submit</Button>
+                 <Link to="./forgotPassword">Forget Password?</Link>
+                 <Button type="submit" onClick={userAuth} className="custom">Login</Button>
+                 <div className="signup-link">
+                    Not a Member <a href="./register"> Signup</a>
+                </div>
             </Form>
+            </div>
         </div>
     )
 
