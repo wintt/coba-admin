@@ -1,10 +1,15 @@
 import React, {useState, useEffect} from 'react'
 import {Button} from 'reactstrap'
+import { Link } from 'react-router-dom'
+import axios from 'axios'
+
 
 const UserList = (props) => {
     const [data, setData] = useState([])
     const [isLoading, setIsLoading] = useState(true)
+    
     let token = "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MTMyMTAyODAsInVzZXJJRCI6MSwicm9sZSI6ImFkbWluIn0.DiV3v9J0E6ej1l0TpItyw7zp7w4lT00IZmNd69vn1Kg"
+   
     useEffect(()=> {
       (async ()=> {
             const response = await fetch('http://13.212.221.23:9040/api/users',{
@@ -52,7 +57,19 @@ const UserList = (props) => {
                                 <td>{item.country}</td>
                                 <td>
                                     <Button type='button' className="btn btn-secondary">Update</Button>
-                                    <Button type='button' className="btn btn-danger">Cancel</Button>
+                                    <Button type='button' className="btn btn-danger" onClick={async ()=> {
+                                        const result = await axios.delete(`http://13.212.221.23:9040/api/users/${item.id}` ,{
+                                            headers:{
+                                                'Authorization': token
+                                            }                                           
+                                        })
+                                         console.log('result==>', result)
+                                         if(result.statusText == "OK") {
+                                             alert("Successfully Deleted")
+                                            window.location.reload();
+                                         }
+                                    }}>Delete</Button>
+                                    <Link to="/" className="btn btn-danger ml-2">Cancel</Link>
                                 </td>
                             </tr>
                          )

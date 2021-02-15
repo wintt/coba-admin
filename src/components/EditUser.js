@@ -3,7 +3,7 @@ import {Form,FormGroup,Label,Input,Button} from 'reactstrap'
 import { Link } from 'react-router-dom'
 
 
-const EditUser = () => {
+const EditUser = (props) => {
 
     const [name, setName] = useState("")
     const [userName, setuserName] = useState("")

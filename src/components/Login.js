@@ -40,7 +40,7 @@ function Login (){
 
 
     return (
-        <div className="col-sm-6 offset-sm-3">
+        <div className="col-sm-4 offset-sm-4">
             <h1>Login Page</h1>
             <Form>
                 <FormGroup>

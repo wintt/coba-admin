@@ -5,6 +5,7 @@ import EditUser from './components/EditUser'
 import UserList from './components/UserList'
 import React from 'react'
 import ReactDOM from 'react-dom'
+import GlobalState from './GlobalState'
 
 //css
 import 'bootstrap/dist/css/bootstrap.min.css';

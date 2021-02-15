@@ -2,8 +2,7 @@ import React, {useState} from 'react'
 import {Form,FormGroup,Label,Input,Button} from 'reactstrap'
 import { useHistory } from 'react-router-dom'
 
-
-function Register () {
+const Register = (props) => {
     const [name, setName] = useState("")
     const [userName, setuserName] = useState("")
     const [password, setPassword] = useState("")
