@@ -11,7 +11,7 @@ const UserList = (props) => {
   
     useEffect(()=> {
       (async ()=> {
-            const response = await fetch('http://13.212.221.23:9040/api/users',{
+            const response = await fetch('/api/users',{
                 method:"GET",
                 headers:{
                    'Authorization': "Bearer " + localStorage.getItem('token')
@@ -55,7 +55,7 @@ const UserList = (props) => {
                                 <td>
                                     <Link to={"./edit/" + item.id} className="btn btn-secondary">Edit</Link>
                                     <Button type='button' style={{marginLeft:"20px"}}className="btn btn-danger" onClick={async ()=> {
-                                        const result = await axios.delete(`http://13.212.221.23:9040/api/users/${item.id}` ,{
+                                        const result = await axios.delete(`/api/users/${item.id}` ,{
                                             headers:{
                                               'Authorization': "Bearer " + localStorage.getItem('token')
                                             }                                           

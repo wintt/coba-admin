@@ -26,7 +26,7 @@ function Login (){
         let loginData = {userName,password}
 
         if(isValid){
-            fetch("http://13.212.221.23:9040/api/login",{
+            fetch("/api/login",{
             method: 'POST',
             headers:{
                 "Content-Type": 'application/json',

@@ -20,7 +20,7 @@ const Register = (props) => {
         // console.warn(name,userName,country,city,phoneNo,role)
         let data = {name,userName,country,city,phone,role,password}
         console.log("JSON.stringify(data)=====>", JSON.stringify(data))
-        fetch("http://13.212.221.23:9040/api/users", {
+        fetch("/api/users", {
             method: 'POST',
             body:JSON.stringify(data),
             headers:{
