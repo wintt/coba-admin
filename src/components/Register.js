@@ -14,9 +14,6 @@ const Register = (props) => {
     const history = useHistory();
 
     const [systemError, setSystemError] = useState("")
-
-    let token = "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MTMyMTAyODAsInVzZXJJRCI6MSwicm9sZSI6ImFkbWluIn0.DiV3v9J0E6ej1l0TpItyw7zp7w4lT00IZmNd69vn1Kg"
-
     function signUp (e)
     {
         e.preventDefault();
@@ -29,7 +26,7 @@ const Register = (props) => {
             headers:{
                 "Content-Type": 'application/json',
                 "Accept": "application/json",
-                'Authorization': token
+                'Authorization': "Bearer " + localStorage.getItem('token')
            },
         }).then(async response => {
             const data = await response.json();

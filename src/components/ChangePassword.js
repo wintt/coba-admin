@@ -11,9 +11,6 @@ const ChangePassword = (props) => {
     const [newPassword, setNewPassword] = useState("")
     const [systemError, setSystemError] = useState("")
 
-    let token = "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MTMyMTAyODAsInVzZXJJRCI6MSwicm9sZSI6ImFkbWluIn0.DiV3v9J0E6ej1l0TpItyw7zp7w4lT00IZmNd69vn1Kg"
-
-
     function changePassword(e){
         e.preventDefault()
         let resetPassword = {currentPassword,newPassword}
@@ -23,7 +20,7 @@ const ChangePassword = (props) => {
             headers:{
                 "Content-Type": 'application/json',
                 "Accept": "application/json",
-                'Authorization': token
+                'Authorization': "Bearer " + localStorage.getItem('token')
             },
             body:JSON.stringify(resetPassword)
         }).then(async response => {

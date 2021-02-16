@@ -8,15 +8,13 @@ const UserList = (props) => {
 
     const [data, setData] = useState([])
     const [isLoading, setIsLoading] = useState(true)
-    
-    let token = "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MTMyMTAyODAsInVzZXJJRCI6MSwicm9sZSI6ImFkbWluIn0.DiV3v9J0E6ej1l0TpItyw7zp7w4lT00IZmNd69vn1Kg"
-   
+  
     useEffect(()=> {
       (async ()=> {
             const response = await fetch('http://13.212.221.23:9040/api/users',{
                 method:"GET",
                 headers:{
-                    'Authorization': token
+                   'Authorization': "Bearer " + localStorage.getItem('token')
                 }
             })
             const data = await response.json();
@@ -59,7 +57,7 @@ const UserList = (props) => {
                                     <Button type='button' style={{marginLeft:"20px"}}className="btn btn-danger" onClick={async ()=> {
                                         const result = await axios.delete(`http://13.212.221.23:9040/api/users/${item.id}` ,{
                                             headers:{
-                                                'Authorization': token
+                                              'Authorization': "Bearer " + localStorage.getItem('token')
                                             }                                           
                                         })
                                          console.log('result==>', result)

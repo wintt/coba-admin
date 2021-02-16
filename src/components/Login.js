@@ -35,13 +35,13 @@ function Login (){
             body:JSON.stringify(loginData)
         }).then(async response => {
             const data = await response.json();
-            localStorage.setItem("user-info",JSON.stringify(data))
-            console.log("Login response===>",response)
+            localStorage.setItem("token", data.token)
             if (!response.ok) {
                 // get error message from body or default to response status
                 const error = (data && data.message) || response.status;
                 return Promise.reject(error);
             }else{
+              setSystemError(data.message)
                history.push("./userList")
             }
         })
