@@ -14,7 +14,7 @@ const ForgotPassword = (props) => {
         e.preventDefault()
         let resetPassword = {newPassword}
         //console.log("newPassword===>", JSON.stringify(resetPassword))
-           fetch(`http://13.212.221.23:9040/api/users/${id}/reset_password`,{
+           fetch(`/api/users/${id}/reset_password`,{
             method: 'PUT',
             headers:{
                 "Content-Type": 'application/json',

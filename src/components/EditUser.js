@@ -14,7 +14,7 @@ const EditUser = (props) => {
     const [phone, setPhone] = useState("")
     // const [role,setRole] = useState("")
     const [systemError, setSystemError] = useState("")
-    const getData=()=>{fetch(`http://13.212.221.23:9040/api/users/${id}`,{
+    const getData=()=>{fetch(`/api/users/${id}`,{
       headers : { 
         'Content-Type': 'application/json',
         'Accept': 'application/json',
@@ -43,7 +43,7 @@ const EditUser = (props) => {
       e.preventDefault();
       console.warn(name,country,city,phone)
       let data = {name,country,city,phone}
-       fetch(`http://13.212.221.23:9040/api/users/${id}`, {
+       fetch(`/api/users/${id}`, {
             method: 'PUT',
             body:JSON.stringify(data),
             headers:{

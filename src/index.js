@@ -21,7 +21,7 @@ function Index (){
         </nav>
         <button>Login</button>
        </header> */}
-      <Router>
+      <Router basename="/admin">
          <Switch>
              <Route exact path="/" component={Home} />
              <Route path="/register" component={Register} />
