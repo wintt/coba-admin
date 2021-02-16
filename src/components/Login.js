@@ -42,7 +42,11 @@ function Login (){
                 return Promise.reject(error);
             }else{
               setSystemError(data.message)
-               history.push("./userList")
+              if(!data.message === "not authorized: get user list"){
+                    history.push("./userList")
+              }else{
+                  alert("Login succcessful for other role.")
+              }
             }
         })
         .catch(error => {
@@ -92,7 +96,7 @@ function Login (){
                  {/* <Link to="./forgotPassword">Forgot Password?</Link> */}
                  <Button type="submit" onClick={userAuth} className="custom">Login</Button>
                  <div className="signup-link">
-                    Not a Member <a href="./register"> Signup</a>
+                    Not a Member? <a href="./register"> Register</a>
                 </div>
             </Form>
             </div>
