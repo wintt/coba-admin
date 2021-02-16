@@ -18,7 +18,7 @@ function Login (){
         }
     }, [])
 
-     function userAuth(e) {
+    function userAuth(e) {
         e.preventDefault()
         // console.warn(userName,password)
         const isValid = formValidation()
@@ -30,14 +30,13 @@ function Login (){
             method: 'POST',
             headers:{
                 "Content-Type": 'application/json',
-                "Accept": "application/json",
-             
+                "Accept": "application/json"
             },
             body:JSON.stringify(loginData)
         }).then(async response => {
             const data = await response.json();
             localStorage.setItem("user-info",JSON.stringify(data))
-            
+            console.log("Login response===>",response)
             if (!response.ok) {
                 // get error message from body or default to response status
                 const error = (data && data.message) || response.status;
@@ -47,19 +46,10 @@ function Login (){
             }
         })
         .catch(error => {
-            // this.setState({ errorMessage: error.toString() });
             console.error('There was an error!', error);
             setSystemError('There was an error! ' + error)
         });
-        // result = await result.json();
-        // console.log("result====>", result)
-        // if(result){
-        //     alert("Login")
-        // }
-        // localStorage.setItem("user-info",JSON.stringify(result))
-        // history.push("./userList")
         }
-
     }
 
     const formValidation = () => {
@@ -99,7 +89,7 @@ function Login (){
                     })}
                 </FormGroup>
                 <div style={{color: "#721c24"}}>{systemError}</div>
-                 <Link to="./forgotPassword">Forgot Password?</Link>
+                 {/* <Link to="./forgotPassword">Forgot Password?</Link> */}
                  <Button type="submit" onClick={userAuth} className="custom">Login</Button>
                  <div className="signup-link">
                     Not a Member <a href="./register"> Signup</a>

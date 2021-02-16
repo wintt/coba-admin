@@ -56,7 +56,7 @@ const UserList = (props) => {
                                 <td>{item.country}</td>
                                 <td>
                                     <Link to={"./edit/" + item.id} className="btn btn-secondary">Edit</Link>
-                                    <Button type='button' className="btn btn-danger" onClick={async ()=> {
+                                    <Button type='button' style={{marginLeft:"20px"}}className="btn btn-danger" onClick={async ()=> {
                                         const result = await axios.delete(`http://13.212.221.23:9040/api/users/${item.id}` ,{
                                             headers:{
                                                 'Authorization': token
@@ -68,7 +68,8 @@ const UserList = (props) => {
                                             window.location.reload();
                                          }
                                     }}>Delete</Button>
-                                    <Link to="/" className="btn btn-danger ml-2">Cancel</Link>
+                                    <Link to={"./forgotPassword/" + item.id} style={{paddingRight:"20px", paddingLeft:"20px"}}>Forgot Password?</Link>
+                                    <Link to={"./changePassword/" + item.id}>Change Password?</Link>
                                 </td>
                             </tr>
                          )

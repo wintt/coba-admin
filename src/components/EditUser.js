@@ -13,6 +13,7 @@ const EditUser = (props) => {
     const [city, setCity] = useState("")
     const [phone, setPhone] = useState("")
     // const [role,setRole] = useState("")
+    const [systemError, setSystemError] = useState("")
  
     let token = "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MTMyMTAyODAsInVzZXJJRCI6MSwicm9sZSI6ImFkbWluIn0.DiV3v9J0E6ej1l0TpItyw7zp7w4lT00IZmNd69vn1Kg"
     
@@ -41,11 +42,11 @@ const EditUser = (props) => {
     getData()
   },[])
 
-  async function updateUser (e) {
+   function updateUser (e) {
       e.preventDefault();
       console.warn(name,country,city,phone)
       let data = {name,country,city,phone}
-      let result = await fetch(`http://13.212.221.23:9040/api/users/${id}`, {
+       fetch(`http://13.212.221.23:9040/api/users/${id}`, {
             method: 'PUT',
             body:JSON.stringify(data),
             headers:{
@@ -53,15 +54,31 @@ const EditUser = (props) => {
                 "Accept": "application/json",
                 'Authorization': token
            },
+        }).then(async response => {
+            const data = await response.json();
+
+            // check for error response
+            if (!response.ok) {
+                // get error message from body or default to response status
+                const error = (data && data.message) || response.status;
+                return Promise.reject(error);
+            }else{
+                alert("Updated Data")
+                window.location.href = "../userList";
+            }
         })
-        result = await result.json()
-        console.log("updated data result ===>", result)
-        if(result){
-            alert("Updated Data")
-            window.location.href = "../userList";
-        }else{
+        .catch(error => {
+            setSystemError('There was an error! ' + error)
+            console.error('There was an error!', error);
+        });
+        // result = await result.json()
+        // console.log("updated data result ===>", result)
+        // if(result){
+        //     alert("Updated Data")
+        //     window.location.href = "../userList";
+        // }else{
             
-        }
+        // }
   }
 
     return (
@@ -81,6 +98,7 @@ const EditUser = (props) => {
                         <Input type="text" className="form-control" value={phone} onChange={(e)=>setPhone(e.target.value)}/>
                         <Label className="form-label"></Label>
                     </FormGroup>
+                     <div style={{color: "#721c24", padding:"10px 0"}}>{systemError}</div>
                      <Button type="submit" className="btn btn-primary" onClick={updateUser}>Update User</Button>
                      <Link to="/" className="btn btn-danger ml-2">Cancel</Link>
                 </Form>

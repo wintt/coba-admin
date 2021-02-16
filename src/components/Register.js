@@ -13,15 +13,17 @@ const Register = (props) => {
 
     const history = useHistory();
 
+    const [systemError, setSystemError] = useState("")
+
     let token = "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MTMyMTAyODAsInVzZXJJRCI6MSwicm9sZSI6ImFkbWluIn0.DiV3v9J0E6ej1l0TpItyw7zp7w4lT00IZmNd69vn1Kg"
 
-    async function signUp (e)
+    function signUp (e)
     {
         e.preventDefault();
         // console.warn(name,userName,country,city,phoneNo,role)
         let data = {name,userName,country,city,phone,role,password}
         console.log("JSON.stringify(data)=====>", JSON.stringify(data))
-        let result = await fetch("http://13.212.221.23:9040/api/users", {
+        fetch("http://13.212.221.23:9040/api/users", {
             method: 'POST',
             body:JSON.stringify(data),
             headers:{
@@ -29,14 +31,30 @@ const Register = (props) => {
                 "Accept": "application/json",
                 'Authorization': token
            },
+        }).then(async response => {
+            const data = await response.json();
+
+            // check for error response
+            if (!response.ok) {
+                // get error message from body or default to response status
+                const error = (data && data.message) || response.status;
+                return Promise.reject(error);
+            }else{
+                alert("You created your account")
+                window.location.href = "/";
+            }
         })
-        result = await result.json()
-        if(result){
-            alert("You created your account")
-            window.location.href = "/";
-        }else{
+        .catch(error => {
+            setSystemError('There was an error! ' + error)
+            console.error('There was an error!', error);
+        });
+        // result = await result.json()
+        // if(result){
+        //     alert("You created your account")
+        //     window.location.href = "/";
+        // }else{
             
-        }
+        // }
        
         // console.log("result", result)
         // localStorage.setItem("user-info", JSON.stringify(result))
@@ -70,7 +88,7 @@ const Register = (props) => {
                             <option value="finance">finance</option>
                         </select>
                     </FormGroup>
-                   
+                     <div style={{color: "#721c24", padding:"10px 0"}}>{systemError}</div>
                      <Button type="submit" className="btn btn-primary" onClick={signUp}>Submit</Button>
                 </Form>
             </div>

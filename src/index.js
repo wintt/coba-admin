@@ -4,6 +4,7 @@ import Register from './components/Register'
 import EditUser from './components/EditUser'
 import UserList from './components/UserList'
 import ForgotPassword from './components/ForgotPassword'
+import ChangePassword from './components/ChangePassword'
 import React from 'react'
 import ReactDOM from 'react-dom'
 
@@ -26,7 +27,8 @@ function Index (){
              <Route path="/register" component={Register} />
              <Route path="/edit/:id" component={EditUser} />
              <Route path="/userList" component={UserList} />
-              <Route path="/forgotPassword" component={ForgotPassword} />
+              <Route path="/forgotPassword/:id" component={ForgotPassword} />
+              <Route path="/changePassword/:id" component={ChangePassword} />
          </Switch>
       </Router>
     </div>
