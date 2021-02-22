@@ -83,6 +83,7 @@ const Register = (props) => {
                             <option value="localagent">localagent</option>
                             <option value="requestor">requestor</option>
                             <option value="finance">finance</option>
+                            <option value="financemm">financemm</option>
                         </select>
                     </FormGroup>
                      <div style={{color: "#721c24", padding:"10px 0"}}>{systemError}</div>

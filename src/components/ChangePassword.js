@@ -31,7 +31,7 @@ const ChangePassword = (props) => {
                 return Promise.reject(error);
             }else{
                 setSystemError(data.message)
-                history.push("../userList")
+                window.history.back();
             }
         })
         .catch(error => {
@@ -49,7 +49,7 @@ const ChangePassword = (props) => {
                     <Label className="form-label">Current Password</Label>
                     <Input type="password" value={currentPassword} onChange={(e)=>setCurrentPassword(e.target.value)}/>
                     <Label className="form-label">New Password</Label>
-                    <Input type="password" value={newPassword} onChange={(e)=>setNewPassword(e.target.value)}/>
+                    <Input value={newPassword} onChange={(e)=>setNewPassword(e.target.value)}/>
                 </FormGroup>
                 <div style={{color: "#721c24"}}>{systemError}</div>
                  <Button type="submit" className="custom" onClick={changePassword}>Submit</Button>

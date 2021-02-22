@@ -5,7 +5,7 @@
 }
 
 body {
-  background-color: DodgerBlue;
+  background-color: #d93731;
 }
 
 .main-wrapper {
@@ -108,7 +108,7 @@ button:hover {
 .login-form .text-field input:focus ~ label,
 .login-form .text-field input:valid ~ label {
   top: -5px;
-  color: dodgerblue;
+  color: #d93731;
 }
 
 .login-form .text-field input:focus ~ span,
@@ -117,7 +117,7 @@ button:hover {
 }
 
 .login-form form a {
-  color: dodgerblue;
+  color: #d93731;
   font-size: 18px;
   align-self: start;
   text-decoration: none;
@@ -128,7 +128,7 @@ button:hover {
   font-size: 18px;
   margin: 20px 0;
   padding: 10px;
-  background: dodgerblue;
+  background: #d93731;
   border: none;
   outline: none;
   color: #ffff;

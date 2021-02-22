@@ -19,7 +19,7 @@ const UserList = (props) => {
             })
             const data = await response.json();
             console.log("response data====>",data)
-            setData(data.splice(0,10));
+            setData(data);
             setIsLoading(false);
        })();
 
